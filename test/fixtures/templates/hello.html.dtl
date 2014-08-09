@@ -1,0 +1,2 @@
+Hello {{ user.name }}!
+{{ welcome_message }}
