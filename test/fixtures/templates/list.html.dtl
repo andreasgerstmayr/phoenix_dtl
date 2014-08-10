@@ -1,3 +1,4 @@
 {% for user in users %}
 {{ user.name }}
 {% endfor %}
+{% include 'partial.html.dtl' %}

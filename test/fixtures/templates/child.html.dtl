@@ -1,0 +1,3 @@
+{% extends 'base.html' %}
+{% block header %}{{ header }}{% endblock %}
+{% block content %}some article{% endblock %}
