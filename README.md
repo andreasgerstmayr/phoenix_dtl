@@ -2,8 +2,9 @@
 
 > Powered by [erlydtl](https://github.com/erlydtl/erlydtl)
 
-> Based on the [HAML template engine for phoenix](https://github.com/chrismccord/phoenix_haml)
+> Based on the [HAML template engine](https://github.com/chrismccord/phoenix_haml) for the [phoenix framework](https://github.com/phoenixframework/phoenix)
 
+[![Build Status](https://api.travis-ci.org/andihit/phoenix_dtl.svg)](https://travis-ci.org/andihit/phoenix_dtl)
 
 ## Usage
 
