@@ -1,11 +1,11 @@
 %{"cowboy": {:package, "1.0.0"},
   "cowlib": {:package, "1.0.0"},
-  "erlydtl": {:git, "git://github.com/erlydtl/erlydtl.git", "6280d21a6d9bd5a8f6caf2530773b0e61471b4d0", [tag: "0.9.4"]},
+  "erlydtl": {:git, "git://github.com/andihit/erlydtl.git", "6ce63bfdb4e81d308a6649aecd7afddf0aaf6f6e", [branch: "windows-support-v0.9.4"]},
   "eunit_formatters": {:git, "git://github.com/seancribbs/eunit_formatters", "7f79fa3fb953b94990bd9b41e92cef7cfecf91ef", [ref: "7f79fa3fb953b94990bd9b41e92cef7cfecf91ef"]},
   "inflex": {:package, "0.2.4"},
   "jazz": {:package, "0.2.0"},
   "linguist": {:package, "0.1.1"},
   "merl": {:git, "git://github.com/erlydtl/merl.git", "28e5b3829168199e8475fa91b997e0c03b90d280", [ref: "28e5b3829168199e8475fa91b997e0c03b90d280"]},
-  "phoenix": {:git, "git://github.com/phoenixframework/phoenix.git", "2a029dcd858fef17dd54bf3a435ae4fa15490edb", []},
+  "phoenix": {:git, "git://github.com/phoenixframework/phoenix.git", "d388a1add3a8a0ded946e951c3931a182418cc84", []},
   "plug": {:package, "0.5.3"},
   "ranch": {:package, "1.0.0"}}
