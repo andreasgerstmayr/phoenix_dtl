@@ -10,28 +10,34 @@ defmodule PhoenixDtl.Engine do
 
   """
   def precompile(file_path, func_name) do
-    result = :erlydtl.compile_file(String.to_char_list(file_path), String.to_char_list(file_path), [{:binary, true}, {:out_dir, false}])
+    module_name = file_path_to_module_name(file_path)
+    result = :erlydtl.compile_file(String.to_char_list(file_path), module_name, [{:binary, true}, {:out_dir, false}])
     binary = case result do
-      {:ok, module, binary} -> binary
-      {:ok, module, binary, _warnings} -> binary
+      {:ok, _module, binary} -> binary
+      {:ok, _module, binary, _warnings} -> binary
       :error -> raise Phoenix.Template.UndefinedError
       {:error, errors, _warnings} -> raise Phoenix.Template.UndefinedError, message: errors
     end
 
-    quote bind_quoted: [func_name: func_name, file_path: file_path, binary: binary] do
+    quote bind_quoted: [func_name: func_name, module_name: module_name, binary: binary] do
       def render(unquote(func_name), assigns) do
-        case :code.is_loaded(unquote(:"#{file_path}")) do
-          false -> :code.load_binary(unquote(:"#{file_path}"), unquote(:"#{file_path}"), unquote(binary))
+        case :code.is_loaded(unquote(module_name)) do
+          false -> :code.load_binary(unquote(module_name), unquote(module_name), unquote(binary))
           _ ->
         end
 
-        result = unquote(:"#{file_path}").render(PhoenixDtl.Util.convert_assignments(assigns))
+        result = unquote(module_name).render(PhoenixDtl.Util.convert_assignments(assigns))
         case result do
           {:ok, rendered} -> IO.iodata_to_binary(rendered)
           {:error, errors} -> raise Phoenix.Template.UndefinedError, message: errors
         end
       end
     end
+  end
+
+  defp file_path_to_module_name(file_path) do
+    module_name = String.replace(file_path, ~r/[^[:alnum:]_]/, "_")
+    :"template_#{module_name}"
   end
 
 end
