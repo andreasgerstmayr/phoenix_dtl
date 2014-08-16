@@ -35,9 +35,15 @@ defmodule PhoenixDtl.Engine do
     end
   end
 
+  defp sha256(str) do
+    hash = :crypto.hash(:sha256, str)
+    hex = for <<b <- hash>>, do: :io_lib.format("~2.16.0b", [b])
+    List.flatten(hex)
+  end
+
   defp file_path_to_module_name(file_path) do
-    module_name = String.replace(file_path, ~r/[^[:alnum:]_]/, "_")
-    :"template_#{module_name}"
+    hash = sha256(file_path)
+    :"template_#{hash}"
   end
 
 end
